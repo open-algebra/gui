@@ -16,10 +16,10 @@
 #include <wx/menu.h>
 #include <wx/msgdlg.h>
 #include <wx/sizer.h>
+#include <wx/stattext.h>
+#include <wx/textctrl.h>
 #include <wx/webview.h>
 #include <wx/webviewfshandler.h>
-
-#include "Oasis/FromString.hpp"
 
 #include "components/EquationViewer/EquationViewer.hpp"
 #include "components/FunctionBuilder/FunctionBuilder.hpp"
@@ -28,6 +28,8 @@
 
 #include "InputPreprocessor.hpp"
 #include "DefaultView.hpp"
+
+#include "Oasis/FromString.hpp"
 
 std::string ExpressionToMathMLStr(const std::unique_ptr<Oasis::Expression>& expr)
 {
@@ -365,7 +367,7 @@ DefaultView::DefaultView()
 
             if (!result.Ok())
             {
-                SetStatusText("");
+                SetStatusText(result.GetErrorMessage());
                 return;
             }
 
