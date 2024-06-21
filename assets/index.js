@@ -1,49 +1,44 @@
 function setCurrentInput(input) {
-    const currentInputDiv = document.getElementById("currentInput");
-    currentInputDiv.innerHTML = "";
+    const currentInputDiv = $("#currentInput");
+    currentInputDiv.html("");
 
     if (input) {
-        const currentInputDivContentWrapper = document.createElement("div");
-        currentInputDivContentWrapper.setAttribute("class", "bg-primary-subtle text-primary-emphasis p-2 shadow rounded-4 border");
-        currentInputDivContentWrapper.innerHTML = input;
+        const currentInputDivContentWrapper = $("<div></div>");
+        currentInputDivContentWrapper
+            .addClass(["bg-primary-subtle", "text-primary-emphasis", "p-2", "shadow rounded-4", "border"])
+            .html(input);
 
-        currentInputDiv.appendChild(currentInputDivContentWrapper)
+        currentInputDiv.append(currentInputDivContentWrapper);
     }
 
     window.scrollTo(0, document.body.scrollHeight);
 }
 
 function addToHistory(query, response) {
-    const stackElem = document.getElementById("stack");
-    const currentInputElem = document.getElementById("currentInput");
+    const currentInputElem = $("#currentInput");
 
-    const queryResponseDiv = document.createElement("div");
-    queryResponseDiv.setAttribute("class", "d-flex flex-column gap-1");
+    const queryResponseDiv = $("<div></div>").attr("class", "d-flex flex-column gap-1");
 
-    const queryDiv = document.createElement("div");
-    queryDiv.setAttribute("class", "align-self-end bg-primary-subtle text-primary-emphasis p-2 shadow rounded-4 border");
-    queryDiv.innerHTML = query;
-    queryResponseDiv.appendChild(queryDiv);
+    const queryDiv = $("<div></div>")
+        .attr("class", "align-self-end bg-primary-subtle text-primary-emphasis p-2 shadow rounded-4 border")
+        .html(query);
+    queryResponseDiv.append(queryDiv);
 
-    const responseDivContainer = document.createElement("div");
-    responseDivContainer.setAttribute("class", "d-flex flex-row gap-2");
+    const responseDivContainer = $("<div></div>").attr("class", "d-flex flex-row gap-2");
 
-    const foxSvgContainer = document.createElement("div")
-    foxSvgContainer.setAttribute("class", "bg-white align-self-end p-1 rounded")
+    const foxSvgContainer = $("<div></div>").attr("class", "bg-white align-self-end p-1 rounded");
 
-    const foxSvg = document.createElement("img");
-    foxSvg.setAttribute("src", "memory:Fox.svg");
-    foxSvg.setAttribute("style", "height: 2em; width: 2em;")
-    foxSvgContainer.appendChild(foxSvg);
-    responseDivContainer.appendChild(foxSvgContainer);
+    const foxSvg = $("<img>", {"src": "memory:Fox.svg", "style": "height: 2em; width: 2em;"});
+    foxSvgContainer.append(foxSvg);
+    responseDivContainer.append(foxSvgContainer);
 
-    const responseDiv = document.createElement("div");
-    responseDiv.setAttribute("class", "align-self-start bg-secondary-subtle p-2 shadow rounded-4 border");
-    responseDiv.innerHTML = response;
-    responseDivContainer.appendChild(responseDiv);
+    const responseDiv = $("<div></div>")
+        .attr("class", "align-self-start bg-secondary-subtle p-2 shadow rounded-4 border")
+        .html(response);
+    responseDivContainer.append(responseDiv);
 
-    queryResponseDiv.appendChild(responseDivContainer)
-    stackElem.insertBefore(queryResponseDiv, currentInputElem);
+    queryResponseDiv.append(responseDivContainer);
+    currentInputElem.before(queryResponseDiv);
 }
 
 function setLightTheme()

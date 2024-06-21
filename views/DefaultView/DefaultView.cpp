@@ -81,6 +81,9 @@ DefaultView::DefaultView()
     const auto& bootstrapJS = ReadFileIntoString("assets/bootstrap-5.3.3-dist/js/bootstrap.bundle.js");
     wxMemoryFSHandler::AddFile("bootstrap.bundle.js", bootstrapJS);
 
+    const auto& jqueryJS = ReadFileIntoString("assets/jquery-3.7.1.min.js");
+    wxMemoryFSHandler::AddFile("jquery.js", jqueryJS);
+
     const auto& bootstrapCSS = ReadFileIntoString("assets/bootstrap-5.3.3-dist/css/bootstrap.css");
     wxMemoryFSHandler::AddFile("bootstrap.css", bootstrapCSS);
 
