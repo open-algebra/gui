@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.18)
 
 project(OasisGUI)
 
-set(OASIS_BUILD_EXTRAS ON)
+set(OASIS_BUILD_IO ON)
 add_subdirectory(libs/Oasis)
 
 find_package(wxWidgets REQUIRED COMPONENTS core base webview)
@@ -17,8 +17,6 @@ set(OasisGUI_SOURCES
     components/FunctionBuilder/FunctionBuilder.hpp
     components/KeypadButton/KeypadButton.cpp
     components/KeypadButton/KeypadButton.hpp
-    InputPreprocessor.cpp
-    InputPreprocessor.hpp
     views/DefaultView/DefaultView.cpp
     views/DefaultView/DefaultView.hpp
     views/PreferencesPanel/PreferencesPanel.cpp
@@ -32,7 +30,7 @@ endif()
 add_executable(OasisGUI ${OasisGUI_SOURCES})
 target_include_directories(OasisGUI PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
-target_link_libraries(OasisGUI Oasis::Extras Oasis::Oasis ${wxWidgets_LIBRARIES})
+target_link_libraries(OasisGUI Oasis::IO Oasis::Oasis ${wxWidgets_LIBRARIES})
 
 add_custom_target(copy_assets ALL
         COMMAND ${CMAKE_COMMAND} -E copy_directory

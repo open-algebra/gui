@@ -10,7 +10,6 @@
 
 #include "FunctionBuilder.hpp"
 
-#include "../../InputPreprocessor.hpp"
 #include "Oasis/Expression.hpp"
 #include "Oasis/FromString.hpp"
 #include "Oasis/MathMLSerializer.hpp"
@@ -21,7 +20,7 @@
 std::string updatePreview(wxWebView* webView, wxTextCtrl* firstArgInput, wxTextCtrl* secondArgInput, const std::string& function)
 {
     auto input = fmt::format("{}({},{})", function, firstArgInput->GetValue().ToStdString(), secondArgInput->GetValue().ToStdString());
-    auto preprocessedInput = preprocessInput(input);
+    auto preprocessedInput = Oasis::PreProcessInFix(input);
 
     tinyxml2::XMLDocument doc;
     tinyxml2::XMLDeclaration* decl = doc.NewDeclaration(R"(xml version="1.0" encoding="UTF-8")");

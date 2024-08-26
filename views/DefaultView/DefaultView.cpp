@@ -26,7 +26,6 @@
 #include "components/KeypadButton/KeypadButton.hpp"
 #include "views/PreferencesPanel/PreferencesPanel.hpp"
 
-#include "InputPreprocessor.hpp"
 #include "DefaultView.hpp"
 
 #include "Oasis/FromString.hpp"
@@ -365,7 +364,7 @@ DefaultView::DefaultView()
                 return;
             }
 
-            const std::string infix = preprocessInput(currentInput);
+            const std::string infix = Oasis::PreProcessInFix(currentInput);
             const auto result = Oasis::FromInFix(infix);
 
             if (!result.Ok())
